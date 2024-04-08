@@ -24,7 +24,7 @@ export class PokemonapiService {
 function MontaNumero(numero) {
   let numeroConvertido = numero;
     if (numero < 10) {
-      numeroConvertido = ('000' + numero).slice(-3);
+      numeroConvertido = ('000' + numero).slice(-2);
     } else if (numero < 100) {
       numeroConvertido = ('00' + numero).slice(-3);
     } else if (numero < 1000) {
