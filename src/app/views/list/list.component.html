@@ -1,0 +1,10 @@
+<input [(ngModel)]="nameFilter" type="text" id="poke-filter" placeholder="Search" maxlength="20" >
+
+<img [src]="pokemonSprite" class="selected-poke" *ngIf="pokemonSelecionado !== null">
+
+<ul class="poke-list">
+    <li class="poke-list-item" *ngFor="let Pokemon of PokemonList" (mouseenter)="selectPokemon(Pokemon)">
+        <img class="poke-list-item-img" src="//serebii.net/pokedex-sv/icon/{{ Pokemon.number }}.png" alt="" srcset="">
+        <a>Nº {{ Pokemon.number }} - {{ Pokemon.name}}</a>
+    </li>
+</ul>
