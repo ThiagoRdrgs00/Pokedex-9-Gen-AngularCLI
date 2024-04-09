@@ -21,17 +21,13 @@ export class PokemonapiService {
   constructor() { }
 }
 
-function MontaNumero(numero) {
-  let numeroConvertido = numero;
-    if (numero < 10) {
-      numeroConvertido = ('000' + numero).slice(-2);
-    } else if (numero < 100) {
-      numeroConvertido = ('00' + numero).slice(-3);
-    } else if (numero < 1000) {
-      numeroConvertido = ('0' + numero).slice(-3);
-    } else {
-      numeroConvertido = (('0000' + numero).slice(-4)).replace(",","");
-    }
+function MontaNumero(PokemonID) {
+  let PokemonIDConvertido = PokemonID;
+  if (PokemonID < 1000) {
+    PokemonIDConvertido = ('000' + PokemonID).slice(-3);
+  } else {
+    PokemonIDConvertido = (('0000' + PokemonID).slice(-4)).replace(",","");
+  }
 
-    return numeroConvertido;
+  return PokemonIDConvertido;
 }

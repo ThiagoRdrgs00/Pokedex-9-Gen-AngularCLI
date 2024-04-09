@@ -25,13 +25,13 @@ export class ListComponent implements OnInit {
   } 
   
   get pokemonSprite() {
-    let number;
+    let PokemonIDConvertido;
     if (this.pokemonSelecionado.number < 1000) {
-      number = ('000' + this.pokemonSelecionado.number).slice(-3);
+      PokemonIDConvertido = ('000' + this.pokemonSelecionado.number).slice(-3);
     } else {
-      number = (('0000' + this.pokemonSelecionado.number).slice(-4)).replace(",","");
+      PokemonIDConvertido = (('0000' + this.pokemonSelecionado.number).slice(-4)).replace(",","");
     }
-    return '//serebii.net/scarletviolet/pokemon/new/'+number+'.png'
+    return '//serebii.net/scarletviolet/pokemon/new/'+PokemonIDConvertido+'.png'
   }
 
   selectPokemon(pokemon) {
