@@ -15,7 +15,7 @@ export class ListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    
+    this.pokemonapi.listarTodos();
   }
 
   get PokemonList() {
@@ -28,7 +28,7 @@ export class ListComponent implements OnInit {
     let PokemonIDConvertido;
     if (this.pokemonSelecionado.number < 1000) {
       PokemonIDConvertido = ('000' + this.pokemonSelecionado.number).slice(-3);
-    } else {
+    } else { //Nesse caso não entra aqui, mas já vou deixar tratado pra V2
       PokemonIDConvertido = (('0000' + this.pokemonSelecionado.number).slice(-4)).replace(",","");
     }
     return '//serebii.net/scarletviolet/pokemon/new/'+PokemonIDConvertido+'.png'
