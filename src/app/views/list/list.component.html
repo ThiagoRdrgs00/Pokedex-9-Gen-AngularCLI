@@ -6,6 +6,7 @@
     </li>
 </ul>
 <div id="fundoImagem">
-    <img [src]="pokemonSprite" class="selected-poke" *ngIf="pokemonSelecionado !== null"/>
-    <span id="pokemonNome" *ngIf="pokemonSelecionado !== null">{{ pokemonSelecionado.name.toUpperCase() }}</span>
+    <img [src]="pokemonSprite" id="selected-poke" *ngIf="pokemonSelecionado !== null"/>
+    <p id="pokemonNome" *ngIf="pokemonSelecionado !== null">{{ pokemonSelecionado.name.toUpperCase() }}</p>
+    <p id="pokemonNome" *ngIf="pokemonSelecionado !== null">{{ PokemonTypes.toUpperCase() }}</p>
 </div>

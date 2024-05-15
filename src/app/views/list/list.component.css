@@ -1,15 +1,25 @@
 #fundoImagem {
-  background-image: url("https://e0.pxfuel.com/wallpapers/783/1020/desktop-wallpaper-pokemon-rotom-dex-pokedex-thumbnail.jpg");
+  width: 26%;
+  height: 420px; 
+  margin-left: 35%;
+  border: black 1px solid;
+  border-radius: 20px;
   position: fixed;
-  width: 25.9%;
-  height: 600px; 
-  margin-left: 35%
+}
+
+#selected-poke {
+  margin: 10%;
+  width: 80%;
+  height: auto;
 }
 
 #pokemonNome {
-  margin-left: 37%;
   font-weight: bold;
   font-size: larger;
+  text-align: center;
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-bottom: 10px;
 }
 
 #poke-filter {
@@ -70,11 +80,4 @@
 .poke-list-item img{
   margin-right: 10px;
   vertical-align: middle;
-}
-
-.selected-poke {
-  margin: 35px;
-  margin-top: 150px;
-  width: 80%;
-  height: auto;
 }

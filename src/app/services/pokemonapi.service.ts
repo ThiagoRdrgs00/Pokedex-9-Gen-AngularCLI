@@ -6,54 +6,63 @@ interface PokeInterface{
   modified: string,
   name: string,
   pokemon: any[],
-  resource_ari: string
-  results: any[];
+  types: any[],
+  url: string
+  results: any[],
+  height: BigInt,
+  id: BigInt;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokemonapiService {
-  private pokeURL = '//dev.treinaweb.com.br/pokeapi/';
+  private pokeURL = 'https://pokeapi.co/api/v2/pokemon/';
   PokemonList = [];
+  PokemonTypes = [];
+  types = "";
   
   constructor(
     private http: HttpClient
   ) { }
 
-  
   listarTodos() {
-    this.http.get<PokeInterface>(this.pokeURL + '/pokedex/1')
+    const params = new HttpParams().set('limit', 1300);
+    this.http.get<PokeInterface>(this.pokeURL, {params})
       .subscribe(response => {
-        response.pokemon.forEach(pokemon =>{
-          pokemon.number = MontaNumero(this.getID(pokemon.resource_uri));
+        response.results.forEach(results =>{
+          results.number = formataNumeroPokemon(this.getID(results.url));
         })
-        this.PokemonList = this.ordenarPokemons(response.pokemon).filter(pokemon => pokemon.number < 1000);
+        this.PokemonList = response.results.filter(results => results.number < 10000);
       });
-    }
+  }
 
   private getID(url){
     return parseInt(url.replace(/.*\/(\d+)\/$/, '$1'));
   }
 
-  private ordenarPokemons(PokemonList){
-    return PokemonList.sort((a, b) => {
-      return (MontaNumero(a.number) > MontaNumero(b.number) ? 1 : -1);
-    })
+  obterDadosPokemon(pokemonSelecionado) {
+    this.types = "";
+    let pokeURLDados = 'https://pokeapi.co/api/v2/pokemon/' + pokemonSelecionado;
+    const params = new HttpParams().set('limit', 1);
+    this.http.get<PokeInterface>(pokeURLDados, {params})
+      .subscribe(response => { 
+        response.types.forEach(response =>{
+          console.log(response.type.name);
+          if (this.types == "") {
+            this.types = response.type.name;
+          } else {
+            this.types = this.types + " - " + response.type.name;
+          }
+        })
+      });
   }
-
 }
 
-function MontaNumero(PokemonID) {
+function formataNumeroPokemon(PokemonID) {
   let PokemonIDConvertido = PokemonID;
-  if (PokemonID < 1000) {
+  if (PokemonID < 100) {
     PokemonIDConvertido = ('00' + PokemonID).slice(-3);
-  } else {
-    PokemonIDConvertido = (('000' + PokemonID).slice(-4)).replace(",","");
   }
-  if (PokemonID > 10000) {
-    PokemonIDConvertido = PokemonID;
-  }
-
   return PokemonIDConvertido;
 }

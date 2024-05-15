@@ -23,18 +23,21 @@ export class ListComponent implements OnInit {
       return Pokemon.name.toLowerCase().indexOf(this.nameFilter.toLowerCase()) !== -1;
     })
   } 
+
+  get PokemonTypes() {
+    return this.pokemonapi.types;
+  }
   
   get pokemonSprite() {
-    let PokemonIDConvertido;
-    if (this.pokemonSelecionado.number < 1000) {
-      PokemonIDConvertido = ('000' + this.pokemonSelecionado.number).slice(-3);
-    } else { //Nesse caso não entra aqui, mas já vou deixar tratado pra V2
-      PokemonIDConvertido = (('0000' + this.pokemonSelecionado.number).slice(-4)).replace(",","");
+    let PokemonIDConvertido = this.pokemonSelecionado.number;
+    if (this.pokemonSelecionado.number < 100) {
+      PokemonIDConvertido = ('00' + this.pokemonSelecionado.number).slice(-3);
     }
-    return '//serebii.net/scarletviolet/pokemon/new/'+PokemonIDConvertido+'.png'
+    return '//serebii.net/scarletviolet/pokemon/new/'+PokemonIDConvertido+'.png';
   }
 
   selectPokemon(pokemon) {
     this.pokemonSelecionado = pokemon;
+    this.pokemonapi.obterDadosPokemon(this.pokemonSelecionado.name);
   }
 }
