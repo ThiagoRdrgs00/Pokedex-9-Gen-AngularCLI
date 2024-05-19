@@ -1,12 +1,28 @@
 <input [(ngModel)]="nameFilter" type="text" id="poke-filter" placeholder="Search" maxlength="20"/>
 <ul class="poke-list">
-    <li class="poke-list-item" *ngFor="let Pokemon of PokemonList" (mouseenter)="selectPokemon(Pokemon)">
-        <img class="poke-list-item-img" src="//serebii.net/pokedex-sv/icon/{{ Pokemon.number }}.png" alt="" srcset="">
-        <a>Nº {{ Pokemon.number }} - {{ Pokemon.name }}</a>
+    <li class="poke-list-item" *ngFor="let Pokemon of PokemonList" (mouseenter)="selectPokemon(Pokemon, 0)">
+        <img class="poke-list-item-img" height="60px" width="60px" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ Pokemon.number }}.png" alt="" srcset="">
+        <a style="width: 300px;">Nº {{ Pokemon.number }} - {{ Pokemon.name }}</a>
+        <img style="margin: 0;" height="40px" width="40px" src="https://cdn-icons-png.flaticon.com/512/2407/2407492.png" (mouseleave)="selectPokemon(Pokemon, 0)" (mouseenter)="selectPokemon(Pokemon, 1)">
     </li>
 </ul>
-<div id="fundoImagem">
-    <img [src]="pokemonSprite" id="selected-poke" *ngIf="pokemonSelecionado !== null"/>
-    <p id="pokemonNome" *ngIf="pokemonSelecionado !== null">{{ pokemonSelecionado.name.toUpperCase() }}</p>
-    <p id="pokemonNome" *ngIf="pokemonSelecionado !== null">{{ PokemonTypes.toUpperCase() }}</p>
+<div id="content">
+    <div id="fundoImagem">
+        <p class="infoPokemonTitle" *ngIf="pokemonSelecionado !== null">{{ pokemonSelecionado.name.toUpperCase() }}</p>
+        <img [src]="fotoPokemon" id="selected-poke" *ngIf="pokemonSelecionado !== null"/>  
+    </div>
+    <div id="fundoImagem2">
+        <p class="infoPokemonTitle" *ngIf="pokemonSelecionado !== null"> TIPO </p>
+        <p></p>
+        <p class="infosPokemon" *ngIf="pokemonSelecionado !== null">{{ PokemonTypes.toUpperCase() }}</p>
+        <p style="height: 10px;">.</p>
+        <p class="infoPokemonTitle" *ngIf="pokemonSelecionado !== null"> STATUS </p>
+        <p></p>
+        <p class="infosPokemon" *ngIf="pokemonSelecionado !== null">{{ hpPokemon }}</p>
+        <p class="infosPokemon" *ngIf="pokemonSelecionado !== null">{{ ataquePokemon }}</p>
+        <p class="infosPokemon" *ngIf="pokemonSelecionado !== null">{{ defesaPokemon }}</p>
+        <p class="infosPokemon" *ngIf="pokemonSelecionado !== null">{{ spataquePokemon }}</p>
+        <p class="infosPokemon" *ngIf="pokemonSelecionado !== null">{{ spdefesaPokemon }}</p>
+        <p class="infosPokemon" *ngIf="pokemonSelecionado !== null">{{ velocidadePokemon }}</p>
+    </div>
 </div>

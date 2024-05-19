@@ -28,16 +28,36 @@ export class ListComponent implements OnInit {
     return this.pokemonapi.types;
   }
   
-  get pokemonSprite() {
-    let PokemonIDConvertido = this.pokemonSelecionado.number;
-    if (this.pokemonSelecionado.number < 100) {
-      PokemonIDConvertido = ('00' + this.pokemonSelecionado.number).slice(-3);
-    }
-    return '//serebii.net/scarletviolet/pokemon/new/'+PokemonIDConvertido+'.png';
+  get fotoPokemon() {
+    return this.pokemonapi.foto;
   }
 
-  selectPokemon(pokemon) {
+  get hpPokemon() {
+    return this.pokemonapi.hp;
+  }
+
+  get ataquePokemon() {
+    return this.pokemonapi.ataque;
+  }
+
+  get spataquePokemon() { 
+    return this.pokemonapi.spattack;
+  }
+
+  get defesaPokemon() {
+    return this.pokemonapi.defesa;
+  }
+
+  get spdefesaPokemon() { 
+    return this.pokemonapi.spdefesa;
+  }
+
+  get velocidadePokemon() { 
+    return this.pokemonapi.velocidade;
+  }
+
+  selectPokemon(pokemon, opcaoFoto) {
     this.pokemonSelecionado = pokemon;
-    this.pokemonapi.obterDadosPokemon(this.pokemonSelecionado.name);
+    this.pokemonapi.obterDadosPokemon(this.pokemonSelecionado.name, opcaoFoto);
   }
 }
