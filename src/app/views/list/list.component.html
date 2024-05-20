@@ -1,28 +1,30 @@
-<input [(ngModel)]="nameFilter" type="text" id="poke-filter" placeholder="Search" maxlength="20"/>
-<ul class="poke-list">
-    <li class="poke-list-item" *ngFor="let Pokemon of PokemonList" (mouseenter)="selectPokemon(Pokemon, 0)">
-        <img class="poke-list-item-img" height="60px" width="60px" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ Pokemon.number }}.png" alt="" srcset="">
-        <a style="width: 300px;">Nº {{ Pokemon.number }} - {{ Pokemon.name }}</a>
-        <img style="margin: 0;" height="40px" width="40px" src="https://cdn-icons-png.flaticon.com/512/2407/2407492.png" (mouseleave)="selectPokemon(Pokemon, 0)" (mouseenter)="selectPokemon(Pokemon, 1)">
-    </li>
-</ul>
-<div id="content">
-    <div id="fundoImagem">
-        <p class="infoPokemonTitle" *ngIf="pokemonSelecionado !== null">{{ pokemonSelecionado.name.toUpperCase() }}</p>
-        <img [src]="fotoPokemon" id="selected-poke" *ngIf="pokemonSelecionado !== null"/>  
-    </div>
-    <div id="fundoImagem2">
-        <p class="infoPokemonTitle" *ngIf="pokemonSelecionado !== null"> TIPO </p>
-        <p></p>
-        <p class="infosPokemon" *ngIf="pokemonSelecionado !== null">{{ PokemonTypes.toUpperCase() }}</p>
-        <p style="height: 10px;">.</p>
-        <p class="infoPokemonTitle" *ngIf="pokemonSelecionado !== null"> STATUS </p>
-        <p></p>
-        <p class="infosPokemon" *ngIf="pokemonSelecionado !== null">{{ hpPokemon }}</p>
-        <p class="infosPokemon" *ngIf="pokemonSelecionado !== null">{{ ataquePokemon }}</p>
-        <p class="infosPokemon" *ngIf="pokemonSelecionado !== null">{{ defesaPokemon }}</p>
-        <p class="infosPokemon" *ngIf="pokemonSelecionado !== null">{{ spataquePokemon }}</p>
-        <p class="infosPokemon" *ngIf="pokemonSelecionado !== null">{{ spdefesaPokemon }}</p>
-        <p class="infosPokemon" *ngIf="pokemonSelecionado !== null">{{ velocidadePokemon }}</p>
+<div id="page">
+    <input [(ngModel)]="nameFilter" type="text" id="poke-filter" placeholder="Search" maxlength="20"/>
+    <ul id="poke-list">
+        <li id="poke-list-item" *ngFor="let Pokemon of PokemonList" (mouseenter)="selectPokemon(Pokemon, 0)">
+            <img id="poke-list-item-img" height="60px" width="60px" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ Pokemon.number }}.png"/>
+            <a style="width: 300px;">Nº {{ Pokemon.number }} - {{ Pokemon.name }}</a>
+            <img style="margin: 0;" height="40px" width="40px" src="https://cdn-icons-png.flaticon.com/512/2407/2407492.png" (mouseleave)="selectPokemon(Pokemon, 0)" (mouseenter)="selectPokemon(Pokemon, 1)" title="Shiny"/>
+        </li>
+    </ul>
+    <div id="content">
+        <div id="fundoImagem" *ngIf="pokemonSelecionado !== null">
+            <p class="infoPokemonTitle">{{ pokemonSelecionado.name.toUpperCase() }}</p>
+            <img [src]="fotoPokemon" id="selected-poke"/>  
+        </div>
+        <div id="fundoImagem2" *ngIf="pokemonSelecionado !== null">
+            <p class="infoPokemonTitle"> TIPO </p>
+            <p></p>
+            <p class="infosPokemon">{{ PokemonTypes.toUpperCase() }}</p>
+            <p style="height: 10px;"></p>
+            <p class="infoPokemonTitle"> STATUS </p>
+            <p></p>
+            <p class="infosPokemon">{{ hpPokemon }}</p>
+            <p class="infosPokemon">{{ ataquePokemon }}</p>
+            <p class="infosPokemon">{{ defesaPokemon }}</p>
+            <p class="infosPokemon">{{ spataquePokemon }}</p>
+            <p class="infosPokemon">{{ spdefesaPokemon }}</p>
+            <p class="infosPokemon">{{ velocidadePokemon }}</p>
+        </div>
     </div>
 </div>
