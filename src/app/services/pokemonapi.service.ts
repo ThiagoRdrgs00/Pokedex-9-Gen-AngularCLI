@@ -46,7 +46,7 @@ export class PokemonapiService {
         results.number = this.getID(results.url);
       })
       //Adiciona os pokemons na lista até 1025, não mostra as formas alternativas, que são acima dos 10000
-      this.PokemonList = response.results.filter(results => results.number < 1025);
+      this.PokemonList = response.results.filter(results => results.number <= 1025);
     });
   }
 
@@ -57,13 +57,13 @@ export class PokemonapiService {
 
   //Obtem as informações do pokemon selecionado
   obterDadosPokemon(pokemonSelecionado, opcaoFoto) {
+    this.types = "";
     let pokeURLDados = 'https://pokeapi.co/api/v2/pokemon/' + pokemonSelecionado;
     const params = new HttpParams().set('limit', 1);
     this.http.get<PokeInterface>(pokeURLDados, {params})
       .subscribe(response => { 
         //Adiciona os tipos na tela, ao selecionar o pokemon
         response.types.forEach(response =>{
-          this.types = "";
           if (this.types == "") {
             this.types = response.type.name;
           } else {
